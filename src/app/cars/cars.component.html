@@ -1,0 +1,72 @@
+<div><h2>The below car inventory is coming from the car component</h2></div>
+
+<div class="container">
+    <div class="panel panel-success">
+        <div class="panel-heading">
+                <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapse1">{{carDetails}}</a>
+                </h4>
+        </div>
+        <div id="collapse1" class="panel-collapse collapse">
+        <div class="panel-body">
+                <div class="row">
+                        <div class="col-md-2">Search Car By Brand:</div>
+                        <div class="col-md-3">
+                            <input type="text" class="form-control" [(ngModel)] ="carSearchByBrand"
+                            placeholder="Enter your text" id="searchCarByBrand"/>
+                        </div>
+                        <div class="col-md-2">Search Car By Model:</div>
+                        <div class="col-md-3">
+                            <input type="text" class="form-control" [(ngModel)] ="searchCarByModel"
+                            placeholder="Enter your text" id="searchCarByModel"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h3>Brand:  {{carSearchByBrand}}</h3>
+                        </div>
+                        <div class="col-md-6">
+                                <h3>Model:  {{searchCarByModel}}</h3>
+                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4>Rating:{{carRating}} </h4>  
+                        </div>  
+                    </div>
+            <div class="table-responsive" *ngIf="carsInventory && carsInventory.length">
+                <table class="table table-striped" >
+                    <thead class="carHeading">
+                        <tr>
+                            <th>Id</th>
+                            <th>Brand</th>
+                            <th>Model</th>
+                            <th>Year</th>
+                            <th>Price</th>
+                            <th>Rating</th>
+                            <th><button class="btn btn-info btn-xs" (click)="showHideCarPics()">
+                                {{showCarPics?"Hide Cars":"Show Cars"}}</button>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            <tr *ngFor="let car of carsInventory|carBrandSearch:carSearchByBrand">
+                                <td>{{car.Id}}</td>
+                                <td>{{car.Brand|uppercase}}</td>
+                                <td>{{car.Model|uppercase}}</td>
+                                <td>{{car.Year}}</td>
+                                <td>{{car.Price|currency}}</td>
+                                <td><car-rating [rating]="car.Rating" 
+                                         (ratingClicked)="onRatingClicked($event)">
+                                    </car-rating>
+                                </td>
+                                <td><img [src]="car.Image" [style.width.px]="imageWidth" 
+                                    *ngIf="showCarPics"/></td>                           
+                            </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        </div>
+    </div> 
+</div>
