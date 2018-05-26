@@ -52,7 +52,8 @@
                     <tbody>
                             <tr *ngFor="let car of carsInventory|carBrandSearch:carSearchByBrand">
                                 <td>{{car.Id}}</td>
-                                <td>{{car.Brand|uppercase}}</td>
+                                <td><a [routerLink] = "['/cars',car.Id]"
+                                   [queryParams]="{name:car.Model,img:car.Image}">{{car.Brand|uppercase}}</a></td>
                                 <td>{{car.Model|uppercase}}</td>
                                 <td>{{car.Year}}</td>
                                 <td>{{car.Price|currency}}</td>

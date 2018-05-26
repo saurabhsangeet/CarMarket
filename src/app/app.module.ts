@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-import {FormsModule} from '@angular/forms'
+import {FormsModule} from '@angular/forms';
+import {RouterModule} from '@angular/router'
 
 
 
@@ -9,17 +10,37 @@ import { CarsComponent } from './cars/cars.component';
 import { CarBrandSearch } from './cars/carsBrandSearch.pipe';
 import { RatingComponent } from './shared/rating.component';
 import { CarsService } from './cars/cars.service';
+import { HomeComponent } from './home/home.component';
+import { NotFound } from './shared/notFound.component';
+import { OrderComponent } from './order/order.component';
+import { CarDetail } from './cars/car-detail.component';
 
 
 @NgModule({
 
     imports:[BrowserModule,
-             FormsModule],
+             FormsModule,
+             RouterModule.forRoot([
+                 {path:'cars',component:CarsComponent},
+                 {path:'cars/:id',component:CarDetail},
+                 {path:'orders',component:OrderComponent},
+                 {path:'home',component:HomeComponent},
+                 {path:'',redirectTo:'home',pathMatch:'full'},
+                 {path:'**',component:NotFound}
+             ])
+            
+            
+            
+            ],
 
     declarations:[AppComponent,
                  CarsComponent,
                  CarBrandSearch,
-                 RatingComponent
+                 RatingComponent,
+                 HomeComponent,
+                 NotFound,
+                 OrderComponent,
+                 CarDetail
                  ],
     providers:[CarsService],             
     bootstrap:[AppComponent]
