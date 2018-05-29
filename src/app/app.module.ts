@@ -14,6 +14,7 @@ import { HomeComponent } from './home/home.component';
 import { NotFound } from './shared/notFound.component';
 import { OrderComponent } from './order/order.component';
 import { CarDetail } from './cars/car-detail.component';
+import { Signup } from './signup/signup.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { CarDetail } from './cars/car-detail.component';
                  {path:'cars/:id',component:CarDetail},
                  {path:'orders',component:OrderComponent},
                  {path:'home',component:HomeComponent},
+                 {path:'signup',component:Signup},
                  {path:'',redirectTo:'home',pathMatch:'full'},
                  {path:'**',component:NotFound}
              ])
@@ -40,7 +42,8 @@ import { CarDetail } from './cars/car-detail.component';
                  HomeComponent,
                  NotFound,
                  OrderComponent,
-                 CarDetail
+                 CarDetail,
+                 Signup
                  ],
     providers:[CarsService],             
     bootstrap:[AppComponent]

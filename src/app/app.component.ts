@@ -13,6 +13,10 @@ import {Component} from '@angular/core'
           <li><a [routerLink]="['/orders']">Orders</a></li>
           <li><a [routerLink]="['/cars']">Cars</a></li>
         </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a [routerLink]="['/signup']"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+          <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        </ul>
    
       </div>
     </nav>
