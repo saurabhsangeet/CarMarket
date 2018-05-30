@@ -2,37 +2,48 @@
 <h1>Hello {{model.firstName}}</h1>
 <div class="container">
       <div class="panel panel-primary">
+
         <div class ="panel-heading">
           <h4>Form Details</h4>
         </div>
+
         <div class="panel-body">
+
           <form #form="ngForm" novalidate>
+
           <div class="form-group">
             <label for="firstName">First Name:</label>
             <input class ="form-control" type="text" name="firstName" [(ngModel)]="model.firstName"
-              id="firstName" />
+              id="firstName" #firstName="ngModel" required/>
+          </div>
+          <div class="alert alert-danger" *ngIf="firstName.invalid">
+              <h6>Please enter the first name</h6>
           </div>
 
             <div class="form-group">
-            <label for="lastName">Last Name:</label>
-            <input class="form-control" type="text" name="lastName" [(ngModel)]="model.lastName"
-               id="lastName" />
-          </div>
+                <label for="lastName">Last Name:</label>
+                <input class="form-control" type="text" name="lastName" [(ngModel)]="model.lastName"
+                id="lastName" />
+         </div>
+
           <div class="checkbox">
             <label>
             <input type="checkbox" name="fullTime" [(ngModel)]="model.fullTime">Full Time 
             </label>
           </div>
+
           <div class="radio">
             <label><input type="radio" name="gender" value="male" [(ngModel)]="model.gender">Male</label>
             <label><input type="radio" name="gender" value="Female" [(ngModel)]="model.gender">Female</label>
           </div>
+
           <div class="form-group">
             <label>Primary Language</label>
             <select class="form-control" name="codeLang" [(ngModel)]="model.codeLang">
               <option *ngFor="let lang of languages">{{lang}}</option>
             </select>
           </div>
+          
           <button class="btn btn-success" type="submit">Submit</button>
           </form>
         </div>
